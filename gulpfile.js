@@ -16,7 +16,7 @@ const autoprefixer = require('gulp-autoprefixer');
 const sass = require('gulp-sass');
 const cleanCSS = require('gulp-clean-css');
 
-gulp.task('sass', () => {
+gulp.task('compile', () => {
   return gulp.src('./sass/**/*.scss')
     .pipe(sass().on('error', sass.logError))
     .pipe(autoprefixer({
@@ -33,7 +33,9 @@ gulp.task('sass', () => {
     .pipe(gulp.dest('./css'));
 });
 
-
 gulp.task('watch', () => {
-  gulp.watch('./sass/**/*.scss', ['sass']);
+  gulp.watch('./sass/**/*.scss', ['compile']);
 });
+
+gulp.task('default', ['compile']);
+
